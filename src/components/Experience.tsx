@@ -11,7 +11,7 @@ export default function Experience() {
         <SectionHeading
           label="Experience"
           title="Beyond the code"
-          description="Leadership, competition, and community — the context that shapes how I build."
+          description="Competitive, curious, and used to showing up when it counts."
         />
 
         <div className="relative">

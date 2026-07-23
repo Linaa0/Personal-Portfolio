@@ -3,28 +3,43 @@ export const personalInfo = {
   shortName: "Lina Assoumani",
   title: "Software Engineer | Full-Stack Developer | Builder",
   tagline:
-    "Building real products for real impact — from Rwanda to the world.",
-  location: "Kabuga, Rwanda",
+    "I take ideas from sketch to shipped product. Full-stack, fast learner, ready to build wherever the work is worth doing.",
+  location: "Kabuga, Rwanda · Open to remote & global teams",
   email: "ishimwelina06@gmail.com",
   phone: "+250 787 481 615",
   github: "https://github.com/Linaa0",
   githubUsername: "Linaa0",
 };
 
+export const highlights = [
+  { value: "4+", label: "Projects shipped" },
+  { value: "Full-stack", label: "Database to deployment" },
+  { value: "Remote-ready", label: "Fluent in English" },
+  { value: "Fast learner", label: "AI & Python in progress" },
+];
+
 export const about = {
-  summary: `A software engineering student at Rwanda Coding Academy with a strong foundation in full-stack development, UI/UX design, and embedded systems/robotics. I build complete, production-style applications end-to-end — from database to interface — and I care about designing solutions that are genuinely useful in the Rwandan and East African context. I'm equally comfortable writing backend logic, designing interfaces in Figma, and prototyping in 3D with Blender. Currently expanding into modern full-stack frameworks like Next.js, NestJS, and TypeScript.`,
+  summary: `I'm a software engineering student at Rwanda Coding Academy who builds like I'm already on the job. I've shipped mobile apps, web platforms, IoT safety systems, and AI-powered chatbots. I own the full stack: database design, API logic, frontend interfaces, and hardware integration when the project needs it. I design in Figma, code in TypeScript and JavaScript, and I'm leveling up with Next.js and NestJS. I'm also studying AI and machine learning with Python. No standalone AI project yet, but I'm building the foundation and already applying what I learn in live apps. I work well independently, communicate clearly, and I'm looking for a team where I can grow while delivering real value from day one.`,
   education: [
     {
       institution: "Rwanda Coding Academy",
       role: "Software Engineering Student",
-      period: "Expected graduation: 2027–2028",
+      period: "Expected graduation: 2027 to 2028",
       details:
-        "Relevant coursework: Database Systems (MongoDB, SQL), Web Development (Frontend & Backend), Software Engineering Principles, Computer Networks",
+        "Coursework in database systems (MongoDB, SQL), full-stack web development, software engineering principles, and computer networks.",
     },
   ],
 };
 
-export const skillGroups = [
+export interface SkillGroup {
+  category: string;
+  skills: string[];
+  highlight?: string[];
+  learning?: boolean;
+  note?: string;
+}
+
+export const skillGroups: SkillGroup[] = [
   {
     category: "Languages",
     skills: ["JavaScript", "TypeScript", "Python", "C"],
@@ -63,6 +78,13 @@ export const skillGroups = [
       "IoT",
     ],
   },
+  {
+    category: "Currently Learning",
+    skills: ["Python", "AI & Machine Learning"],
+    highlight: ["Python", "AI & Machine Learning"],
+    learning: true,
+    note: "Studying AI with Python now. No standalone project yet, but actively building the foundation for what's next.",
+  },
 ];
 
 export interface Project {
@@ -81,7 +103,7 @@ export const projects: Project[] = [
     title: "Attentra",
     hook: "Helping young minds focus in a distracted world.",
     description:
-      "Mobile app to reduce distraction in young adults by managing screen time and encouraging focused work sessions. Includes AI-powered usage analysis for personalized productivity recommendations.",
+      "A mobile app that tracks screen time and runs focused work sessions. Uses AI to analyze usage patterns and recommend productivity habits that stick. Built end to end: React Native frontend, Express/Node backend, MongoDB data layer.",
     tech: ["React Native", "Express.js", "Node.js", "MongoDB"],
     github: "https://github.com/Linaa0/AttenTra",
     featured: true,
@@ -91,7 +113,7 @@ export const projects: Project[] = [
     title: "RCA Archive+",
     hook: "Institutional knowledge, digitized and secure.",
     description:
-      "A full digital archive system for storing, organizing, and retrieving institutional records, with secure authentication and a clean document-management interface.",
+      "A production-grade digital archive for storing, organizing, and retrieving institutional records. Secure authentication, clean document management, and a MERN stack built to handle real data at scale.",
     tech: ["MongoDB", "Express.js", "React", "Node.js"],
     github: "https://github.com/Linaa0/RCA_ARCHIVE",
     featured: true,
@@ -101,7 +123,7 @@ export const projects: Project[] = [
     title: "SafeZone",
     hook: "Safety and emergency response, when seconds matter.",
     description:
-      "Safety application for reporting incidents and reaching emergency support quickly, with real-time notifications and IoT-based alerting via Arduino hardware integration.",
+      "A safety platform for reporting incidents and reaching help fast. Real-time notifications via Socket.io, plus IoT alerts through Arduino hardware. Software and hardware working together under one system.",
     tech: ["Node.js", "Express.js", "MongoDB", "React", "Socket.io", "Arduino"],
     featured: true,
   },
@@ -110,7 +132,7 @@ export const projects: Project[] = [
     title: "Flowbot",
     hook: "Intelligent automation that never sleeps.",
     description:
-      "Chatbot system automating responses with AI/NLP integration for context-aware, 24/7 user interaction handling.",
+      "A chatbot that handles user conversations around the clock. AI/NLP integration keeps responses context-aware instead of feeling like canned replies. Built for teams that need 24/7 interaction without 24/7 staff.",
     tech: ["Node.js", "Express.js", "MongoDB", "React"],
     github: "https://github.com/Linaa0/FlowBot",
     featured: true,
@@ -122,23 +144,25 @@ export const experiences = [
     title: "Robotics Club Member",
     organization: "Rwanda Coding Academy",
     description:
-      "Embedded systems, Arduino programming, hardware-software integration",
+      "Arduino, embedded systems, and hardware-software integration. This is where I learned to make code do something in the physical world.",
   },
   {
     title: "Writing Club Member",
     organization: "Rwanda Coding Academy",
-    description: "Technical and creative writing",
+    description:
+      "Technical and creative writing. I know how to explain complex work to teammates, stakeholders, and users.",
   },
   {
     title: "Academic Olympiads",
     organization: "National Programs",
     description:
-      "Mathematics Olympiad Camp 2023; Physics Olympiad Camp 2025/2026 (attended twice)",
+      "Mathematics Olympiad Camp (2023) and Physics Olympiad Camp (2025/2026, attended twice). Trained to solve hard problems under pressure.",
   },
   {
-    title: "Head Girl, Grade 5–6",
+    title: "Head Girl, Grades 5 and 6",
     organization: "School Leadership",
-    description: "Early leadership and organizational experience",
+    description:
+      "Led classmates and organized events. Leadership taught me early that great software starts with listening to the people it serves.",
   },
 ];
 
@@ -150,7 +174,7 @@ export const languages = [
 ];
 
 export const interests =
-  "Building innovative solutions to unsolved problems, exploring emerging technologies, robotics and IoT, AI/ML applications, and contributing to open-source projects.";
+  "Hard problems, emerging tech, and software that holds up in production. Robotics, IoT, open source, and AI with Python keep me learning. I'm looking for teams building something worth the effort, anywhere in the world.";
 
 export const navLinks = [
   { href: "#about", label: "About" },

@@ -36,16 +36,18 @@ export default function Contact() {
       <div className="container-max">
         <SectionHeading
           label="Contact"
-          title="Let's build something"
-          description="Open to internships, collaborations, hackathons, and freelance projects."
+          title="Ready when you are"
+          description="Internships, remote roles, freelance work, and startup collaborations worldwide."
         />
 
         <div className="grid gap-12 lg:grid-cols-2">
           <div className="space-y-6">
             <p className="text-base leading-relaxed text-muted">
-              Whether you&apos;re a recruiter, a fellow builder, or someone with
-              an idea worth exploring — I&apos;d love to hear from you. Based in
-              Rwanda, building for East Africa and beyond.
+              You need someone who ships, not someone who only talks about
+              shipping. I build mobile apps, web platforms, and IoT systems. I
+              pick things up fast, write clearly, and deliver work your team
+              can actually use. Remote or on-site, internship or contract. If
+              the problem is interesting, I want in.
             </p>
 
             <ul className="space-y-4">

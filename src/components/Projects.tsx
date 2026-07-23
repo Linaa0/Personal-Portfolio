@@ -26,7 +26,7 @@ export default function Projects() {
         <SectionHeading
           label="Projects"
           title="Things I've built"
-          description="Production-style applications — end to end, from database to interface."
+          description="Four real applications. Each one designed, built, and deployed by me."
         />
 
         {/* Filter tabs */}

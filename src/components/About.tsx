@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { GraduationCap, MapPin, Sparkles } from "lucide-react";
 import { about, interests, personalInfo } from "@/data/portfolio";
 import SectionHeading from "./SectionHeading";
@@ -9,24 +10,22 @@ export default function About() {
         <SectionHeading
           label="About"
           title="Developer with purpose"
-          description="Not just learning to code — shipping products that matter."
+          description="Built to ship. Ready to join your team."
         />
 
         <div className="grid items-start gap-12 lg:grid-cols-[280px_1fr]">
-          {/* Photo placeholder */}
           <div className="mx-auto w-full max-w-[280px] lg:mx-0">
             <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-border bg-surface-elevated">
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-accent/10 text-3xl font-bold text-accent-light">
-                  LA
-                </div>
-                <p className="text-sm text-muted">Photo placeholder</p>
-                <p className="text-xs text-muted/60">
-                  Replace with your professional photo
-                </p>
-              </div>
+              <Image
+                src="/profile.png"
+                alt="ISHIMWE Lina Assoumani, software engineer at Rwanda Coding Academy"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 1024px) 280px, 280px"
+                priority
+              />
               <div
-                className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"
+                className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent"
                 aria-hidden
               />
             </div>

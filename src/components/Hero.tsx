@@ -1,10 +1,9 @@
 import { ArrowDown, Github, Mail } from "lucide-react";
-import { personalInfo } from "@/data/portfolio";
+import { highlights, personalInfo } from "@/data/portfolio";
 
 export default function Hero() {
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden hero-grid">
-      {/* Gradient orbs */}
       <div
         className="gradient-orb pointer-events-none absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-accent/20 blur-3xl"
         aria-hidden
@@ -46,6 +45,23 @@ export default function Hero() {
           </p>
 
           <div
+            className="animate-slide-up mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4"
+            style={{ animationDelay: "0.45s" }}
+          >
+            {highlights.map((item) => (
+              <div
+                key={item.label}
+                className="rounded-xl border border-border bg-surface/80 px-4 py-3 backdrop-blur-sm"
+              >
+                <p className="font-display text-lg font-bold text-white">
+                  {item.value}
+                </p>
+                <p className="mt-0.5 text-xs text-muted">{item.label}</p>
+              </div>
+            ))}
+          </div>
+
+          <div
             className="animate-slide-up mt-10 flex flex-wrap gap-4"
             style={{ animationDelay: "0.5s" }}
           >
@@ -61,7 +77,7 @@ export default function Hero() {
               className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-6 py-3 text-sm font-semibold text-white transition-all hover:border-accent/50 hover:bg-surface-elevated"
             >
               <Mail size={16} />
-              Contact Me
+              Hire Me
             </a>
             <a
               href={personalInfo.github}

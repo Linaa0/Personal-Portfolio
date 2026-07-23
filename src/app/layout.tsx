@@ -19,7 +19,7 @@ const sora = Sora({
 export const metadata: Metadata = {
   title: "ISHIMWE Lina Assoumani | Software Engineer & Full-Stack Developer",
   description:
-    "Portfolio of ISHIMWE Lina Assoumani — Software Engineer and Full-Stack Developer from Rwanda. Building production-ready applications with Next.js, TypeScript, React, and Node.js.",
+    "Portfolio of ISHIMWE Lina Assoumani, Software Engineer and Full-Stack Developer. Ships mobile apps, web platforms, and IoT systems with Next.js, TypeScript, React, and Node.js.",
   keywords: [
     "ISHIMWE Lina Assoumani",
     "Software Engineer",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ISHIMWE Lina Assoumani | Software Engineer & Full-Stack Developer",
     description:
-      "Young, ambitious developer building real products for real impact in Rwanda and beyond.",
+      "Full-stack developer who ships mobile apps, web platforms, and IoT projects. Remote-ready, hire-ready, and still growing fast.",
     type: "website",
     locale: "en_US",
   },
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ISHIMWE Lina Assoumani | Software Engineer",
     description:
-      "Full-Stack Developer building production-ready applications from Rwanda.",
+      "Full-Stack Developer shipping production-ready applications worldwide.",
   },
 };
 
