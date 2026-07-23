@@ -1,5 +1,6 @@
-import { ArrowDown, Github, Mail } from "lucide-react";
+import { ArrowDown, Mail } from "lucide-react";
 import { highlights, personalInfo } from "@/data/portfolio";
+import GitHubIcon from "./GitHubIcon";
 
 export default function Hero() {
   return (
@@ -85,7 +86,7 @@ export default function Hero() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-6 py-3 text-sm font-semibold text-white transition-all hover:border-accent/50 hover:bg-surface-elevated"
             >
-              <Github size={16} />
+              <GitHubIcon size={16} />
               GitHub
             </a>
           </div>

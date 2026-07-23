@@ -1,8 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { allProjectTech, projects } from "@/data/portfolio";
+import GitHubIcon from "./GitHubIcon";
 import SectionHeading from "./SectionHeading";
 
 export default function Projects() {
@@ -88,7 +89,7 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 text-sm font-medium text-accent-light transition-colors hover:text-white"
                     >
-                      <Github size={16} />
+                      <GitHubIcon size={16} />
                       View on GitHub
                       <ExternalLink size={12} />
                     </a>

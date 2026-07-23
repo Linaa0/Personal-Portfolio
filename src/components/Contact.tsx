@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import { Github, Mail, Phone, Send } from "lucide-react";
+import { Mail, Phone, Send } from "lucide-react";
 import { personalInfo } from "@/data/portfolio";
+import GitHubIcon from "./GitHubIcon";
 import SectionHeading from "./SectionHeading";
 
 export default function Contact() {
@@ -64,7 +65,7 @@ export default function Contact() {
                 value={personalInfo.phone}
               />
               <ContactLink
-                icon={<Github size={18} />}
+                icon={<GitHubIcon size={18} />}
                 label="GitHub"
                 href={personalInfo.github}
                 value={`github.com/${personalInfo.githubUsername}`}

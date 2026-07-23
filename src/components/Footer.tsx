@@ -1,5 +1,6 @@
-import { Github, Heart, Mail } from "lucide-react";
+import { Heart, Mail } from "lucide-react";
 import { personalInfo } from "@/data/portfolio";
+import GitHubIcon from "./GitHubIcon";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -25,7 +26,7 @@ export default function Footer() {
               className="rounded-lg p-2 text-muted transition-colors hover:bg-surface hover:text-white"
               aria-label="GitHub"
             >
-              <Github size={20} />
+              <GitHubIcon size={20} />
             </a>
             <a
               href={`mailto:${personalInfo.email}`}
