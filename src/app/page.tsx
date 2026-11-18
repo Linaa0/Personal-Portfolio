@@ -1,20 +1,20 @@
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Skills from "@/components/Skills";
-import Projects from "@/components/Projects";
-import Experience from "@/components/Experience";
-import Languages from "@/components/Languages";
-import Contact from "@/components/Contact";
+import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+import Work from "@/components/sections/Work";
+import Capabilities from "@/components/sections/Capabilities";
+import QLine from "@/components/sections/QLine";
+import Direction from "@/components/sections/Direction";
+import Contact from "@/components/sections/Contact";
 
 export default function Home() {
   return (
     <>
       <Hero />
       <About />
-      <Skills />
-      <Projects />
-      <Experience />
-      <Languages />
+      <Work />
+      <Capabilities />
+      <QLine />
+      <Direction />
       <Contact />
     </>
   );

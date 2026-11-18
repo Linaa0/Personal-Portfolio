@@ -1,57 +1,460 @@
 @import "tailwindcss";
-@config "../../tailwind.config.mjs";
 
+/* ------------------------------------------------------------------ */
+/* Design tokens                                                       */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-night: #090204;
+  --color-velvet: #18050a;
+  --color-oxblood: #2a040a;
+  --color-crimson: #6b0b19;
+  --color-wine: #86192d;
+  --color-flare: #a52a40;
+  --color-rose: #c58a94;
+  --color-paper: #f8f5f6;
+  --color-mist: #a89498;
+  --color-dim: #79676c;
+  --color-cream: #f4eae4;
+  --color-line: rgb(197 138 148 / 0.14);
+
+  --font-display: var(--font-quicksand), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-quicksand), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-velvet: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-silk: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --breakpoint-xs: 26rem;
+}
+
+:root {
+  color-scheme: dark;
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --nav-h: 5rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
 @layer base {
   html {
-    scroll-behavior: smooth;
+    overflow-x: clip;
+    background: var(--color-night);
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
-    @apply bg-background text-white antialiased;
+    background: var(--color-night);
+    color: var(--color-paper);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    font-weight: 400;
+    line-height: 1.75;
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   ::selection {
-    @apply bg-accent/40 text-white;
+    background: var(--color-wine);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 1.5px solid var(--color-rose);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  /* Quicksand has no italic; emphasis is carried by colour instead */
+  em,
+  i {
+    font-style: normal;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 }
 
-@layer utilities {
-  .text-gradient {
-    @apply bg-gradient-to-r from-white via-accent-light to-accent bg-clip-text text-transparent;
-  }
-
-  .section-padding {
-    @apply px-4 py-20 sm:px-6 lg:px-8 lg:py-28;
-  }
-
-  .container-max {
-    @apply mx-auto max-w-6xl;
-  }
+/* While the intro plays */
+html.is-loading,
+html.is-loading body {
+  overflow: hidden;
 }
 
-/* Subtle grid background for hero */
-.hero-grid {
-  background-image: linear-gradient(
-      rgba(99, 102, 241, 0.03) 1px,
-      transparent 1px
-    ),
-    linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
-  background-size: 64px 64px;
+/* ------------------------------------------------------------------ */
+/* Lenis                                                               */
+/* ------------------------------------------------------------------ */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+.lenis [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
 
-/* Gradient orb animation */
-@keyframes pulse-glow {
+/* ------------------------------------------------------------------ */
+/* Layout helpers                                                      */
+/* ------------------------------------------------------------------ */
+@utility shell {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+@utility section-space {
+  padding-block: clamp(7rem, 14vw, 12rem);
+}
+
+@utility eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-mist);
+  line-height: 1.4;
+}
+
+@utility mask {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.06em 0.12em;
+  margin-block: -0.06em -0.12em;
+}
+
+/* Crosshair marker, a small architectural detail */
+.crosshair {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  pointer-events: none;
+}
+.crosshair::before,
+.crosshair::after {
+  content: "";
+  position: absolute;
+  background: var(--color-rose);
+  opacity: 0.45;
+}
+.crosshair::before {
+  left: 6px;
+  top: 0;
+  width: 1px;
+  height: 13px;
+}
+.crosshair::after {
+  top: 6px;
+  left: 0;
+  height: 1px;
+  width: 13px;
+}
+
+/* Film grain, static and cheap */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 0.9 0 0 0 0 0.92 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: overlay;
+  opacity: 0.14;
+}
+
+/* Ambient light fields */
+@keyframes drift-a {
   0%,
   100% {
-    opacity: 0.4;
-    transform: scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
   50% {
-    opacity: 0.6;
-    transform: scale(1.05);
+    transform: translate3d(6vw, 4vh, 0) scale(1.12);
+  }
+}
+@keyframes drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+  50% {
+    transform: translate3d(-5vw, -6vh, 0) scale(0.92);
+  }
+}
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+.drift-a {
+  animation: drift-a 26s var(--ease-silk) infinite;
+}
+.drift-b {
+  animation: drift-b 32s var(--ease-silk) infinite;
+}
+.breathe {
+  animation: breathe 9s ease-in-out infinite;
+}
+
+/* Spotlight that follows the pointer (vars set from JS) */
+.spotlight {
+  background: radial-gradient(
+    34rem circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgb(165 42 64 / 0.14),
+    transparent 60%
+  );
+  transition: opacity 0.6s var(--ease-velvet);
+}
+
+/* Link with an animated underline */
+.link-line {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.6s var(--ease-velvet), color 0.3s;
+}
+.link-line:hover,
+.link-line:focus-visible {
+  background-size: 100% 1px;
+}
+
+/* Form fields */
+.field {
+  width: 100%;
+  margin-top: 0.6rem;
+  background: rgb(248 245 246 / 0.05);
+  border: 1px solid rgb(197 138 148 / 0.32);
+  border-radius: 0.9rem;
+  padding: 0.95rem 1.1rem;
+  color: var(--color-paper);
+  font-size: 1rem;
+  font-weight: 500;
+  outline: none;
+  transition: border-color 0.3s var(--ease-velvet), background-color 0.3s, box-shadow 0.3s;
+}
+.field::placeholder {
+  color: var(--color-mist);
+  opacity: 0.75;
+}
+.field:hover {
+  border-color: rgb(197 138 148 / 0.55);
+}
+.field:focus,
+.field:focus-visible {
+  border-color: var(--color-rose);
+  background: rgb(248 245 246 / 0.08);
+  box-shadow: 0 0 0 4px rgb(165 42 64 / 0.22);
+  outline: none;
+}
+.field[aria-invalid="true"] {
+  border-color: var(--color-flare);
+}
+
+/* Process timeline states */
+[data-step] .step-dot {
+  transition: background-color 0.6s var(--ease-velvet), box-shadow 0.6s var(--ease-velvet), border-color 0.6s;
+}
+[data-step] .step-body {
+  transition: opacity 0.8s var(--ease-velvet), transform 0.8s var(--ease-velvet);
+}
+.motion-ok [data-step]:not(.is-active) .step-body {
+  opacity: 0.28;
+  transform: translateX(-6px);
+}
+[data-step].is-active .step-dot {
+  background: var(--color-flare);
+  border-color: var(--color-rose);
+  box-shadow: 0 0 0 6px rgb(165 42 64 / 0.18);
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion: initial states. `motion-ok` is set before paint when the     */
+/* visitor has not asked for reduced motion; GSAP animates from here.  */
+/* ------------------------------------------------------------------ */
+.motion-ok [data-hero="line"] > span,
+.motion-ok [data-reveal="lines"] .mask > span {
+  display: block;
+  transform: translate3d(0, 112%, 0);
+}
+.motion-ok [data-hero="fade"] {
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+}
+.motion-ok [data-reveal="fade"],
+.motion-ok [data-reveal="up"],
+.motion-ok [data-reveal="stagger"] > * {
+  opacity: 0;
+}
+.motion-ok [data-reveal="words"] .w {
+  opacity: 0.14;
+}
+.motion-ok [data-hero="frame"] {
+  clip-path: inset(100% 0 0 0);
+}
+.motion-ok [data-hero="glow"] {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-.gradient-orb {
-  animation: pulse-glow 8s ease-in-out infinite;
+/* ------------------------------------------------------------------ */
+/* Crosshair cursor (fine pointers only, added from JS)                */
+/* ------------------------------------------------------------------ */
+html.has-blood-cursor,
+html.has-blood-cursor * {
+  cursor: none !important;
 }
+html.has-blood-cursor input,
+html.has-blood-cursor textarea,
+html.has-blood-cursor select,
+html.has-blood-cursor [contenteditable="true"] {
+  cursor: text !important;
+}
+.crosshair-cursor {
+  --gap: 7px;
+  --len: 10px;
+  --w: 1px;
+  width: 0;
+  height: 0;
+  filter: blur(0.35px);
+}
+.crosshair-cursor .ch-halo {
+  position: absolute;
+  left: -15px;
+  top: -15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(165 42 64 / 0.35), transparent 70%);
+  filter: blur(4px);
+  transition: transform 0.45s var(--ease-velvet), opacity 0.45s;
+}
+.crosshair-cursor .ch {
+  position: absolute;
+  background: linear-gradient(var(--color-rose), var(--color-flare));
+  box-shadow: 0 0 4px rgb(165 42 64 / 0.7);
+  border-radius: 1px;
+  opacity: 0.9;
+  transition: width 0.35s var(--ease-velvet), height 0.35s var(--ease-velvet), left 0.35s var(--ease-velvet),
+    top 0.35s var(--ease-velvet), background-color 0.3s, box-shadow 0.3s;
+}
+.crosshair-cursor .ch-t,
+.crosshair-cursor .ch-b {
+  left: calc(var(--w) / -2);
+  width: var(--w);
+  height: var(--len);
+}
+.crosshair-cursor .ch-t {
+  top: calc(-1 * (var(--gap) + var(--len)));
+}
+.crosshair-cursor .ch-b {
+  top: var(--gap);
+}
+.crosshair-cursor .ch-l,
+.crosshair-cursor .ch-r {
+  top: calc(var(--w) / -2);
+  height: var(--w);
+  width: var(--len);
+}
+.crosshair-cursor .ch-l {
+  left: calc(-1 * (var(--gap) + var(--len)));
+}
+.crosshair-cursor .ch-r {
+  left: var(--gap);
+}
+.crosshair-cursor .ch-dot {
+  position: absolute;
+  left: -1.5px;
+  top: -1.5px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--color-rose);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.crosshair-cursor[data-state="hover"] {
+  --gap: 10px;
+  --len: 12px;
+}
+.crosshair-cursor[data-state="hover"] .ch-halo {
+  transform: scale(1.5);
+}
+.crosshair-cursor[data-state="hover"] .ch {
+  background: var(--color-rose);
+  box-shadow: 0 0 8px rgb(165 42 64 / 0.9);
+}
+.crosshair-cursor[data-state="hover"] .ch-dot {
+  opacity: 1;
+}
+.crosshair-cursor[data-pressed="true"] {
+  --gap: 4px;
+}
+.crosshair-cursor[data-state="field"] {
+  opacity: 0 !important;
+}
+.blood-fall {
+  position: absolute;
+  border-radius: 50% 50% 50% 50% / 38% 38% 62% 62%;
+  background: radial-gradient(circle at 35% 60%, #c23a52, #6b0b19 70%);
+  filter: blur(0.3px);
+  pointer-events: none;
+}
+.blood-stain {
+  position: absolute;
+  border-radius: 46% 54% 42% 58% / 52% 44% 56% 48%;
+  background: radial-gradient(circle at 38% 35%, #b02a44, #6b0b19 60%, #3a0610);
+  box-shadow: 0 0 6px rgb(107 11 25 / 0.5);
+  pointer-events: none;
+}
+.blood-run {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  width: 2.5px;
+  height: 0;
+  transform: translateX(-50%);
+  border-radius: 0 0 4px 4px;
+  background: linear-gradient(#6b0b19, #86192d);
+}
+.blood-run::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2.5px;
+  width: 5px;
+  height: 5px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: #86192d;
+}
+

@@ -1,37 +1,49 @@
-# Personal Portfolio — ISHIMWE Lina Assoumani
+# Ishimwe Lina Assoumani · Portfolio
 
-A modern, dark-mode personal portfolio built with **Next.js 16**, **TypeScript**, and **Tailwind CSS v4**.
+Personal portfolio of Ishimwe Lina Assoumani: software developer, creative technologist, product builder, and CEO & Co-Founder of QLine Technologies.
 
-## Requirements
+Art direction: cinematic burgundy and dark velvet. Grenze for display type, Geist for text.
 
-- **Node.js 20.9+** (required for Next.js 16)
+## Stack
 
-## Getting Started
+- Next.js 16 (App Router), React 19, TypeScript
+- Tailwind CSS v4 (tokens in `src/app/globals.css`)
+- GSAP + ScrollTrigger (scroll choreography), Lenis (smooth scrolling), Framer Motion (UI transitions)
+
+## Where things live
+
+| What | File |
+| --- | --- |
+| Name, links, portrait, CV | `src/lib/site-config.ts` |
+| The six projects | `src/lib/projects.ts` |
+| Capabilities, process, ambitions | `src/lib/content.ts` |
+| Sections | `src/components/sections/` |
+| Project scenes and pinned showcase | `src/components/projects/` |
+| Scroll choreography (data attributes) | `src/components/motion/ScrollScenes.tsx` |
+
+## Adding the portrait
+
+Put the photo in `public/` (for example `public/portrait.jpg`) and set `portrait.src` in `src/lib/site-config.ts`. Every portrait frame updates.
+
+## Contact form delivery
+
+The form posts to `/api/contact`, which sends through [Resend](https://resend.com) when these environment variables are set:
+
+```
+RESEND_API_KEY=...
+CONTACT_TO_EMAIL=you@example.com
+CONTACT_FROM_EMAIL="Portfolio <hello@your-domain>"   # optional
+```
+
+Without them the form says nothing was sent and offers the visitor's email app instead.
+
+## Develop
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Deploy on Vercel
-
-1. Push this repo to GitHub
-2. Import the project at [vercel.com/new](https://vercel.com/new)
-3. Vercel auto-detects Next.js. Use **Node.js 20.x or 22.x** in project settings if needed
-4. Build command: `npm run build` · Output: Next.js default
-
-## Customize
-
-- **Photo:** `public/profile.png` (used in `src/components/About.tsx`)
-- **SafeZone GitHub:** Add the link in `src/data/portfolio.ts` when ready
-- **Content:** All copy lives in `src/data/portfolio.ts`
-
-## Tech Stack
-
-- Next.js 16 (App Router, Turbopack)
-- React 19
-- TypeScript 5.9
-- Tailwind CSS v4
-- Lucide React (icons)
+```bash
+npm run build
+```
