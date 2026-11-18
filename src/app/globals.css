@@ -345,7 +345,7 @@ html.has-blood-cursor [contenteditable="true"] {
   --w: 1px;
   width: 0;
   height: 0;
-  filter: blur(0.35px);
+  filter: blur(0.7px);
 }
 .crosshair-cursor .ch-halo {
   position: absolute;
@@ -354,18 +354,18 @@ html.has-blood-cursor [contenteditable="true"] {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgb(165 42 64 / 0.35), transparent 70%);
-  filter: blur(4px);
+  background: radial-gradient(circle, rgb(165 42 64 / 0.22), transparent 70%);
+  filter: blur(5px);
   transition: transform 0.45s var(--ease-velvet), opacity 0.45s;
 }
 .crosshair-cursor .ch {
   position: absolute;
   background: linear-gradient(var(--color-rose), var(--color-flare));
-  box-shadow: 0 0 4px rgb(165 42 64 / 0.7);
+  box-shadow: 0 0 5px rgb(165 42 64 / 0.5);
   border-radius: 1px;
-  opacity: 0.9;
+  opacity: 0.5;
   transition: width 0.35s var(--ease-velvet), height 0.35s var(--ease-velvet), left 0.35s var(--ease-velvet),
-    top 0.35s var(--ease-velvet), background-color 0.3s, box-shadow 0.3s;
+    top 0.35s var(--ease-velvet), background-color 0.3s, box-shadow 0.3s, opacity 0.3s;
 }
 .crosshair-cursor .ch-t,
 .crosshair-cursor .ch-b {
@@ -411,7 +411,8 @@ html.has-blood-cursor [contenteditable="true"] {
 }
 .crosshair-cursor[data-state="hover"] .ch {
   background: var(--color-rose);
-  box-shadow: 0 0 8px rgb(165 42 64 / 0.9);
+  box-shadow: 0 0 8px rgb(165 42 64 / 0.7);
+  opacity: 0.8;
 }
 .crosshair-cursor[data-state="hover"] .ch-dot {
   opacity: 1;
